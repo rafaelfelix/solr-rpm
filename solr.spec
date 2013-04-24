@@ -1,24 +1,27 @@
 %define _prefix /var/lib/solr
 
-Name:		solr
+Name:		tomcat-solr
 Version:	%{ver}
 Release:	2%{?dist}
-Summary:	Solr
+Summary:	Solr is the popular, blazing fast open source enterprise search platform from the Apache Lucene project.
 License:	GPL
 URL:		http://lucene.apache.org/solr/
 Source: 	http://apache.cu.be/lucene/solr/%{version}/apache-solr-%{version}.tgz
 Source1:        tomcat-solr.xml
 Source2:        solrconfig.xml
 BuildRoot:	%(mktemp -ud %{_tmppath}/%{name}-%{version}-%{release}-XXXXXX)
-Requires:	/usr/sbin/groupadd /usr/sbin/useradd
 Requires: 	tomcat6
 
 %description
-%{summary}
-%
+Solr is the popular, blazing fast open source enterprise search platform
+from the Apache Lucene project.
+
+For a complete description of the Solr project, team composition, source
+code repositories, and other details, please see the Solr web site at
+http://lucene.apache.org/solr
+
 %prep
 %setup -q -n apache-solr-%{version}
-
 
 %build
 
@@ -39,8 +42,6 @@ sed -i "s/VERSION/%{ver}/g" "%{buildroot}/etc/tomcat6/Catalina/localhost/solr.xm
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-
-
 %files
 %defattr(-,tomcat,tomcat,-)
 %attr(0755,tomcat,tomcat) %dir %{_prefix}
@@ -55,7 +56,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_prefix}/data
 %{_prefix}/dist
 
-
 %changelog
+* Tue Apr 23 2013 Rafael Felix Correa <rafael.felix@gmail.com>
+- Added description from Apache Solr website
+
 * Tue Jan 18 2012 Jean-Francois Roche <jfroche@affinitic.be>
 - Initial implementation
