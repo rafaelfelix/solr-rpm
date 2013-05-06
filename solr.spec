@@ -1,6 +1,6 @@
 %define _prefix /var/lib/solr
 
-Name:		tomcat-solr
+Name:		tomcat6-solr
 Version:	%{ver}
 Release:	2%{?dist}
 Summary:	Solr is the popular, blazing fast open source enterprise search platform from the Apache Lucene project.
